@@ -1,0 +1,6 @@
+.env
+
+lidarr/config/*
+navidrome/data/*
+slskd/app/*
+soularr/data/*

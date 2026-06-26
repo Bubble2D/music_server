@@ -1,0 +1,26 @@
+services:
+  slskd:
+    image: slskd/slskd
+    container_name: slskd
+    user: "1000:1000"
+    ports:
+      - 5030:5030/tcp
+      - 5031:5031/tcp
+      - 50300:50300/tcp
+    environment:
+      - SLSKD_REMOTE_CONFIGURATION=true
+      - SLSKD_DOWNLOADS_DIR=/downloads
+      - SLSKD_SLSK_USERNAME=${slsk_user}
+      - SLSKD_SLSK_PASSWORD=${slsk_password}
+      - SLSKD_API_KEY=${slskd_api}
+    volumes:
+      - ./app:/app:rw
+      - ${music_folder_library}:/music
+      - ${music_folder_downloads}:/downloads
+    restart: unless-stopped
+    networks:
+      - music_server
+
+networks:
+    music_server:
+      external: true
