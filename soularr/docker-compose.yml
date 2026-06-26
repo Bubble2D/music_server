@@ -1,0 +1,22 @@
+services:
+  soularr:
+    image: mrusse08/soularr:latest
+    container_name: soularr
+    user: "1000:1000"
+    environment:
+      - TZ=${TZ}
+      - LIDARR_URL=http://lidarr:8686
+      - LIDARR_API_KEY=${lidarr_api}
+      - SLSKD_URL=http://slskd:5030
+      - SLSKD_API_KEY=${slskd_api}
+      - SCRIPT_INTERVAL=300
+    volumes:
+      - ${music_folder_downloads}:/downloads
+      - ./data:/data
+    restart: unless-stopped
+    networks:
+      - music_server
+ 
+networks:
+  music_server:
+    external: true

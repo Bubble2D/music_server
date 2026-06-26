@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+      - ${music_folder_library}:/music
+      - ${music_folder_downloads}:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped   
+    networks:
+      - music_server
+
+networks:
+    music_server:
+      external: true
