@@ -10,6 +10,7 @@ services:
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
       - SLSKD_DOWNLOADS_DIR=/downloads
+      - SLSKD_SHARED_DIR=/music
       - SLSKD_SLSK_USERNAME=${slsk_user}
       - SLSKD_SLSK_PASSWORD=${slsk_password}
       - SLSKD_API_KEY=${slskd_api}
