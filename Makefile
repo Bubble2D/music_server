@@ -2,7 +2,7 @@
         navidrome-up navidrome-down navidrome-logs \
         lidarr-up lidarr-down lidarr-logs \
         slskd-up slskd-down slskd-logs \
-        soularr-up soularr-down soularr-logs soularr-config \
+#       soularr-up soularr-down soularr-logs soularr-config \ ### DEPRECATED
 
 ENV_FILE = .env
 DC = docker compose --env-file $(ENV_FILE)
@@ -12,8 +12,8 @@ network:
 	docker network create music_server || true
 
 # Alle Services
-up: navidrome-up lidarr-up slskd-up soularr-up
-down: navidrome-down lidarr-down slskd-down soularr-down
+up: navidrome-up lidarr-up slskd-up #soularr-up
+down: navidrome-down lidarr-down slskd-down #soularr-down
 
 restart: down up
 
@@ -47,7 +47,8 @@ slskd-down:
 slskd-logs:
 	$(DC) -f slskd/docker-compose.yml logs -f
 
-# --- soularr ---
+# --- soularr --- 
+#  DEPRECATED
 soularr-up:
 	$(DC) -f soularr/docker-compose.yml up -d
 

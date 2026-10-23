@@ -1,7 +1,6 @@
-version: "2.1"
 services:
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
+    build: .
     container_name: lidarr
     environment:
       - PUID=1000
@@ -14,6 +13,12 @@ services:
     ports:
       - 8686:8686
     restart: unless-stopped   
+    networks:
+      - music_server
+  bgutil-pot:
+    image: brainicism/bgutil-ytdlp-pot-provider:latest
+    container_name: bgutil-pot
+    restart: unless-stopped
     networks:
       - music_server
 
